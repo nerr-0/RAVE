@@ -1,75 +1,33 @@
 *{
-    padding: 0;
-    margin: 0;
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
 }
-.top-nav{
-    display:  flex;
-     justify-content: space-between;
-     margin: 20px;
-}
-.top-nav img{
-    width: 70px;
-    height: 70px;
-    /* border-radius: 50%; */
-}
-.main{
+body{
     display: flex;
-    justify-content: space-between;
-    gap: 16px;
-    margin-right: 16px;
+    
 }
-.main a{
-    text-decoration: none;
-    color: grey;
-}
-/*main section styles*/
-main{
-    display: flex;
-    height: 100vh;
-}
-.left-panel{
+.left-side-panel{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 20px;
-    margin: 20px;
-    height: 70%;
-    border-right: 1px solid red;
+    height: 600px;
+    background-color: red;
 }
-.left-panel a img{
-    width: 50px;
-    height: 50px;
+.left-side-panel img{
+    height: 40px;
+    width: 40px;
 }
-.right-panel{
- 
-}
-.all-posts{
+.right-side-panel{
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     flex-wrap: wrap;
-    padding: 20px;
-    gap: 20px;
-    margin: 20px;
-    
-}
-.each-post{
-    width: 25%;
-    height: fit-content;
-    border: 1px solid grey;
-    margin: 20px;
-    border-radius: 10px;
-}
-.each-post img{
     width: 100%;
-    height: 70%;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    height: 600px;
+    background-color: blue;
 }
-.lower{
-    display: flex;
-    border-top: 1px solid grey;
-}
-.lower span{
-    background-color: rgb(238, 63, 63);
-    border-bottom-left-radius: 10px;
+.card{
+    width: 30%;
+    height: fit-content;
 }
