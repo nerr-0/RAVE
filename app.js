@@ -87,39 +87,32 @@ app.post("/register", upload.single("image"), (req, res) => {
 app.get("/login", (req, res) => {
   res.render("login");
 });
-app.post("/login", (req, res) => {
-  con.query(
-    "SELECT email FROM ravers WHERE email = ?",
-    [req.body.email],
-    (error, results) => {
-      if (error) {
-        res.render("error");
-      } else {
-        con.query(
-          "SELECT password FROM ravers WHERE email =?",
-          [req.body.email],
-          (error, results) => {
-            if (error) {
-              res.render("error");
-            } else {
-              if (results.password == req.body.password) {
-                res.render("raver");
-              } else {
-                res.render("login", { error: "WRONG PASSWORD" });
-              }
-            }
+app.post("/login", (req, res)=>{
+  con.query("SELECT * FROM ravers WHERE email = ?", [req.body.email], (error, results)=>{
+    console.log(results)
+    if(error){
+      res.render("error")
+    }else{
+      bcrypt.compare(req.body.password, results[0].password, (error, match)=>{
+        if(error){
+          res.render("error")
+        }else{
+          if(match){
+            res.render("raver")
+          }else{
+            res.render("login", {error: "PASSWORDS DO NOT MATCH"})
           }
-        );
-      }
+        }
+      })
     }
-  );
-});
+  })
+})
 app.get("/log-out", (req, res) => {
   res.render("/");
 });
-app.get("/raver", (req, res) => {
-  res.render("raver");
-});
+app.get("/raver", (req, res)=>{
+  res.render("raver")
+})
 app.get("/account", (req, res) => {
   res.render("account");
 });
@@ -132,6 +125,10 @@ app.get("/info", (req, res) => {
 app.get("/settings", (req, res) => {
   res.render("settings");
 });
+
+
+
+
 
 app.listen(3000, () => {
   console.log("Listening on port");

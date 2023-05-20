@@ -7,6 +7,26 @@
     <title>Ravers</title>
 </head>
 <body>
-    
+    <header>
+        <div class="ravers-header">
+        <a href=""></a>
+        <a href=""></a>
+        <a href=""></a>
+        <span><img src="./images/profiles/" alt=""></span>
+    </div>
+    </header>
+    <main>
+        <div class="main-header">
+            <h2>Recent Events</h2>
+            <button class="btns">+ Add Event</button>
+        </div>
+        <form action="/add-event" class="add-event-form hide" method="post" enctype="multipart/form-data">
+            <input type="file" name="event_poster" id="event_poster">
+            <div>
+                <input type="datetime-local" name="event_date" id="event_date">
+                <input type="text" name="event_name" id="event_name">
+            </div>
+        </form>
+    </main>
 </body>
 </html>
