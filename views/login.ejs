@@ -7,6 +7,11 @@
     <title>Login Page</title>
   </head>
   <body>
+    <%if(locals.error){%>
+      <p style="color:orangered">
+        <%=errorMessage%>
+      </p>
+      <%}%>
     <form action="/login" method="post">
       <label for="email"> Email</label><br />
       <input type="email" name="email" id="email" required /><br /><br />

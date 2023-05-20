@@ -35,7 +35,13 @@ con.connect((error) => {
 });
 
 app.get("/", (req, res) => {
-  res.render("home");
+  con.query(" SELECT * FROM posters", (error, allPosts) => {
+    if (error) {
+      res.render("error");
+    } else {
+      res.render("home", { posts: allPosts });
+    }
+  });
 });
 app.get("/register", (req, res) => {
   res.render("register");
@@ -87,32 +93,40 @@ app.post("/register", upload.single("image"), (req, res) => {
 app.get("/login", (req, res) => {
   res.render("login");
 });
-app.post("/login", (req, res)=>{
-  con.query("SELECT * FROM ravers WHERE email = ?", [req.body.email], (error, results)=>{
-    console.log(results)
-    if(error){
-      res.render("error")
-    }else{
-      bcrypt.compare(req.body.password, results[0].password, (error, match)=>{
-        if(error){
-          res.render("error")
-        }else{
-          if(match){
-            res.render("raver")
-          }else{
-            res.render("login", {error: "PASSWORDS DO NOT MATCH"})
+app.post("/login", (req, res) => {
+  con.query(
+    "SELECT * FROM ravers WHERE email = ?",
+    [req.body.email],
+    (error, results) => {
+      console.log(results);
+      if (error) {
+        res.render("error");
+      } else {
+        bcrypt.compare(
+          req.body.password,
+          results[0].password,
+          (error, match) => {
+            if (error) {
+              res.render("error");
+            } else {
+              if (match) {
+                res.render("raver");
+              } else {
+                res.render("login", { error: "PASSWORDS DO NOT MATCH" });
+              }
+            }
           }
-        }
-      })
+        );
+      }
     }
-  })
-})
-app.get("/log-out", (req, res) => {
-  res.render("/");
+  );
 });
-app.get("/raver", (req, res)=>{
-  res.render("raver")
-})
+app.get("/log-out", (req, res) => {
+  res.render("home");
+});
+app.get("/raver", (req, res) => {
+  res.render("raver");
+});
 app.get("/account", (req, res) => {
   res.render("account");
 });
@@ -125,10 +139,22 @@ app.get("/info", (req, res) => {
 app.get("/settings", (req, res) => {
   res.render("settings");
 });
-
-
-
-
+app.get("/post-add-page", (req, res) => {
+  res.render("post-add-page");
+});
+app.post("/post-add-page", upload.single("image"), (req, res) => {
+  con.query(
+    "INSERT INTO posters(event_poster, image_type, event_date, event_name) VALUES(?,?,?,?)",
+    [req.file.filename, fileType, req.body.event_date, req.body.event_name],
+    (error) => {
+      if (error) {
+        res.render("error");
+      } else {
+        res.render("raver");
+      }
+    }
+  );
+});
 
 app.listen(3000, () => {
   console.log("Listening on port");

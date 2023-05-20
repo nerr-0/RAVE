@@ -1,32 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <script src="./scripts/main.js" defer></script>
     <title>Ravers</title>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <div class="ravers-header">
+      <div class="ravers-header">
         <a href=""></a>
         <a href=""></a>
         <a href=""></a>
-        <span><img src="./images/profiles/" alt=""></span>
-    </div>
+        <span><img src="./images/profiles/" alt="" /></span>
+      </div>
     </header>
     <main>
+      <div class="ravers-main">
         <div class="main-header">
-            <h2>Recent Events</h2>
-            <button class="btns">+ Add Event</button>
+          <h2>Recent Events</h2>
+          <a href="/post-add-page">ADD EVENT</a>
+          <!-- <button class="event-button">+ Add Event</button> -->
         </div>
-        <form action="/add-event" class="add-event-form hide" method="post" enctype="multipart/form-data">
-            <input type="file" name="event_poster" id="event_poster">
-            <div>
-                <input type="datetime-local" name="event_date" id="event_date">
-                <input type="text" name="event_name" id="event_name">
-            </div>
-        </form>
+        <!-- <button class="trial"> That event</button> -->
+           
+         
+      </div>
     </main>
-</body>
+  </body>
 </html>
