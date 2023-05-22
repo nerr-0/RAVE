@@ -18,6 +18,7 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
+const uploaded = multer({destination: "/public/images/posters/"})
 
 //creating connection to database
 const con = mysql.createConnection({
@@ -47,7 +48,7 @@ app.get("/register", (req, res) => {
   res.render("register");
 });
 app.post("/register", upload.single("image"), (req, res) => {
-  console.log("route working");
+  // console.log("route working");
   let fileType = req.file.mimetype.slice(req.file.mimetype.indexOf("/") + 1);
   const filePath =
     req.protocol +
@@ -142,7 +143,14 @@ app.get("/settings", (req, res) => {
 app.get("/post-add-page", (req, res) => {
   res.render("post-add-page");
 });
-app.post("/post-add-page", upload.single("image"), (req, res) => {
+app.post("/post-add-page", uploaded.single("event_poster"), (req, res) => {
+  let fileType = req.file.mimetype.slice(req.file.mimetype.indexOf("/") + 1);
+  const filePath =
+    req.protocol +
+    "://" +
+    req.hostname +
+    "/images/posters/" +
+    req.file.filename;
   con.query(
     "INSERT INTO posters(event_poster, image_type, event_date, event_name) VALUES(?,?,?,?)",
     [req.file.filename, fileType, req.body.event_date, req.body.event_name],
