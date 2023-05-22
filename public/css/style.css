@@ -66,6 +66,9 @@ main {
   border-top-right-radius: 10px;
 }
 /*ravers page styles*/
-.add-event-form .hide{
-  display: none;
+.ravers-header span img{
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
 }
+

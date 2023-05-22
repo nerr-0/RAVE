@@ -18,7 +18,7 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
-const uploaded = multer({destination: "/public/images/posters/"})
+const uploaded = multer({ destination: "/public/images/posters/" });
 
 //creating connection to database
 const con = mysql.createConnection({
@@ -36,13 +36,7 @@ con.connect((error) => {
 });
 
 app.get("/", (req, res) => {
-  con.query(" SELECT * FROM posters", (error, allPosts) => {
-    if (error) {
-      res.render("error");
-    } else {
-      res.render("home", { posts: allPosts });
-    }
-  });
+  res.render("home");
 });
 app.get("/register", (req, res) => {
   res.render("register");
@@ -99,7 +93,8 @@ app.post("/login", (req, res) => {
     "SELECT * FROM ravers WHERE email = ?",
     [req.body.email],
     (error, results) => {
-      console.log(results);
+      console.log(results[0]);
+      let user = results[0];
       if (error) {
         res.render("error");
       } else {
@@ -111,7 +106,7 @@ app.post("/login", (req, res) => {
               res.render("error");
             } else {
               if (match) {
-                res.render("raver");
+                res.render("raver", { user });
               } else {
                 res.render("login", { error: "PASSWORDS DO NOT MATCH" });
               }
