@@ -117,6 +117,9 @@ app.post("/login", (req, res) => {
     }
   );
 });
+app.get("/contact", (req, res) => {
+  res.render("contact");
+});
 app.get("/log-out", (req, res) => {
   res.render("home");
 });

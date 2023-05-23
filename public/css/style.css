@@ -66,9 +66,26 @@ main {
   border-top-right-radius: 10px;
 }
 /*ravers page styles*/
+.ravers-header{
+  /* margin: 20px; */
+}
 .ravers-header span img{
   width: 70px;
   height: 70px;
   border-radius: 50%;
 }
+.main-header a{
+  text-decoration: none;
+  color: black;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px;
+
+}
+.main-header{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
 
