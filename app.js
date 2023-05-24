@@ -106,7 +106,14 @@ app.post("/login", (req, res) => {
               res.render("error");
             } else {
               if (match) {
-                res.render("raver", { user });
+                con.query("SELECT * FROM posters", (error, allPosts)=>{
+                  if(error){
+                    res.render("error");
+                  }else{
+                    res.render("raver", { user, allPosts });
+                  }
+                })
+                
               } else {
                 res.render("login", { error: "PASSWORDS DO NOT MATCH" });
               }

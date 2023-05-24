@@ -87,5 +87,26 @@ main {
   justify-content: space-between;
   width: 100%;
 }
+/*contact page styles*/
+.contact-extras-icons img{
+  width: 30px;
+  height: 30px;
+}
 
+/*footer styles*/
+.footer-sponsors, .footer-contacts{
+  display: flex;
+  justify-content: space-between;
+  width: 40%;
+  padding: 20px;
 
+}
+.footer-sponsors img{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+.footer-contacts img{
+  width: 30px;
+  height: 30px;
+}
