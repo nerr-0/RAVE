@@ -10,25 +10,44 @@
   </head>
   <body>
     <header>
-      <div class="ravers-header">
-        <a href="/">HOME</a>
-        <a href="/about">ABOUT</a>
-        <a href="/log-out">LOG OUT</a>
-        <span
-          ><img src="./images/profiles/<%=user.image%>" alt="profile"
-        /></span>
-      </div>
+      
     </header>
     <main>
+       <div class="left-side-panel">
+            <img src="./images/mainlogo.png" alt="logo">
+            <a href="/account"><img src="./logos/person-outline.svg" alt="account"></a>
+            <a href="/calendar"><img src="./logos/calendar-clear-outline.svg" alt="calendar"></a>
+            <a href="/info"><img src="./logos/info.svg" alt="info"></a>
+            <a href="/settings"><img src="./logos/settings-outline.svg" alt="settings"></a>
+        </div>
       <div class="ravers-main">
+
+        <div class="ravers-header">
+          <a href="/">HOME</a>
+          <a href="/about">ABOUT</a>
+          <a href="/log-out">LOG OUT</a>
+          <span
+            ><img src="./images/profiles/<%=user.image%>" alt="profile"
+          /></span>
+       </div>
+
         <div class="main-header">
           <h2>Recent Events</h2>
           <a href="/post-add-page">ADD EVENT</a>
         </div> 
       </div>
-      <div class="ravers-page">
-        
-      </div>
     </main>
+    <div class="all-cards">
+      <%allPosts.forEach(post=>{%>
+          <div class="card">
+            <img src="./images/posters/<%=allPosts.image%>" alt="<%allPosts.post_owner%>">
+            <div class="lower">
+              <span><%allPosts.event_date%></span>
+              <h3><%allPosts.event_name%></h3>
+            </div>
+            <h4><%allPosts.post_owner%></h4>
+          </div>
+        <%})%>
+    </div>
   </body>
 </html>

@@ -3,6 +3,9 @@ const app = express();
 const multer = require("multer");
 const mysql = require("mysql");
 const bcrypt = require("bcrypt");
+
+let isLoggedIn;
+
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
@@ -106,15 +109,17 @@ app.post("/login", (req, res) => {
               res.render("error");
             } else {
               if (match) {
-                con.query("SELECT * FROM posters", (error, allPosts)=>{
-                  if(error){
+                isLoggedIn = true;
+                con.query("SELECT * FROM posters", (error, allPosts) => {
+                  if (error) {
                     res.render("error");
-                  }else{
+                  } else {
+                    console.log(allPosts);
                     res.render("raver", { user, allPosts });
                   }
-                })
-                
+                });
               } else {
+                isLoggedIn = false;
                 res.render("login", { error: "PASSWORDS DO NOT MATCH" });
               }
             }
@@ -143,7 +148,11 @@ app.get("/info", (req, res) => {
   res.render("info");
 });
 app.get("/settings", (req, res) => {
-  res.render("settings");
+  if (isLoggedIn === true) {
+    res.render("settings");
+  } else {
+    res.render("login", { error: "PLEASE LOGIN" });
+  }
 });
 app.get("/post-add-page", (req, res) => {
   res.render("post-add-page");

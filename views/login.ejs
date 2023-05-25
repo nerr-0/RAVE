@@ -9,7 +9,7 @@
   <body>
     <%if(locals.error){%>
       <p style="color:orangered">
-        <%=errorMessage%>
+        <%=locals.errorMessage%>
       </p>
       <%}%>
     <form action="/login" method="post">

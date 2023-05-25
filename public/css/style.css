@@ -87,11 +87,19 @@ main {
   justify-content: space-between;
   width: 100%;
 }
+.ravers-main{
+  margin-left: 80px;
+}
+
+
+
+
 /*contact page styles*/
 .contact-extras-icons img{
   width: 30px;
   height: 30px;
 }
+
 
 /*footer styles*/
 .footer-sponsors, .footer-contacts{
