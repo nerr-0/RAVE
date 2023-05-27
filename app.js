@@ -120,7 +120,7 @@ app.post("/login", (req, res) => {
                   } else {
                     // console.log("below is allPosts")
                     // console.log(allPosts);
-                    res.render("raver", { user, allPosts });
+                    res.render("raver", {currentUser :user[0], allPosts });
                   }
                 } else {
                   isLoggedIn = false;
@@ -168,7 +168,7 @@ app.post("/post-add-page", uploaded.single("event_poster"), (req, res) => {
     req.protocol +
     "://" +
     req.hostname +
-    "/images/posters/" +
+    " /public/images/posters/" +
     req.file.filename;
   con.query(
     "INSERT INTO posters(event_poster, image_type, event_date, event_name) VALUES(?,?,?,?)",
