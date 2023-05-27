@@ -95,37 +95,42 @@ app.post("/login", (req, res) => {
   con.query(
     "SELECT * FROM ravers WHERE email = ?",
     [req.body.email],
-    (error, results) => {
-      console.log(results[0]);
-      let user = results[0];
-      if (error) {
-        res.render("error");
-      } else {
-        bcrypt.compare(
-          req.body.password,
-          results[0].password,
-          (error, match) => {
-            if (error) {
-              res.render("error");
-            } else {
-              if (match) {
-                isLoggedIn = true;
-                con.query("SELECT * FROM posters", (error, allPosts) => {
+    (error, user) => {
+      con.query("SELECT * FROM posters", (error, allPosts) => {
+        console.log(user[0]);
+        console.log("the above is the users")
+        console.log(allPosts)
+        console.log("the above is the posts")
+        // let user = results[0];
+        if (error) {
+          res.render("error");
+        } else {
+          bcrypt.compare(
+            req.body.password,
+            user[0].password,
+            (error, match) => {
+              if (error) {
+                res.render("error");
+              } else {
+                if (match) {
+                  isLoggedIn = true;
+
                   if (error) {
                     res.render("error");
                   } else {
-                    console.log(allPosts);
+                    // console.log("below is allPosts")
+                    // console.log(allPosts);
                     res.render("raver", { user, allPosts });
                   }
-                });
-              } else {
-                isLoggedIn = false;
-                res.render("login", { error: "PASSWORDS DO NOT MATCH" });
+                } else {
+                  isLoggedIn = false;
+                  res.render("login", { error: "PASSWORDS DO NOT MATCH" });
+                }
               }
             }
-          }
-        );
-      }
+          );
+        }
+      });  //the tag will go here
     }
   );
 });
