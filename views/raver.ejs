@@ -40,12 +40,12 @@
     <div class="all-cards">
       <%allPosts.forEach(post=>{%>
       <div class="card">
-        <img src="./images/posters/<%=post.image%>" alt="anything" />
+        <img src="./images/posters/<%=post.eventposter%>" alt="anything" />
         <div class="lower">
-          <span><%post.event_date%></span>
-          <h3><%post.event_name%></h3>
+          <span><%=post.event_date%></span>
+          <h3><%=post.event_name%></h3>
         </div>
-        <h4><%post.post_owner%></h4>
+        <h4><%=post.post_owner%></h4>
       </div>
       <%})%>
     </div>
