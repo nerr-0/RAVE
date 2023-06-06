@@ -44,10 +44,10 @@ const kon = mysql.createConnection({
   database: "sern",
 });
 kon.connect((error) => {
-  if(error){
+  if (error) {
     console.error(error);
-  }else{
-    console.log("CONNECTED TO SERN DATABASE")
+  } else {
+    console.log("CONNECTED TO SERN DATABASE");
   }
 });
 
@@ -57,7 +57,7 @@ app.get("/", (req, res) => {
 app.get("/register", (req, res) => {
   res.render("register");
 });
-app.post("/register",  (req, res) => {
+app.post("/register", (req, res) => {
   // console.log("route working");
   // let fileType = req.file.mimetype.slice(req.file.mimetype.indexOf("/") + 1);
   // const filePath =
@@ -77,13 +77,7 @@ app.post("/register",  (req, res) => {
           bcrypt.hash(req.body.password, 5, function (err, hash) {
             con.query(
               "INSERT INTO ravers(name,phone,password,email) VALUES(?,?,?,?)",
-              [
-                req.body.name,
-                req.body.phone,
-                hash,
-                req.body.email,
-               
-              ],
+              [req.body.name, req.body.phone, hash, req.body.email],
               (error) => {
                 if (error) {
                   res.render("error");
@@ -110,9 +104,9 @@ app.post("/login", (req, res) => {
     (error, user) => {
       kon.query("SELECT * FROM posters", (error, allPosts) => {
         console.log(user[0]);
-        console.log("the above is the users")
-        console.log(allPosts)
-        console.log("the above is the posts")
+        console.log("the above is the users");
+        console.log(allPosts);
+        console.log("the above is the posts");
         // let user = results[0];
         if (error) {
           res.render("error");
@@ -131,7 +125,7 @@ app.post("/login", (req, res) => {
                     res.render("error");
                   } else {
                     // console.log(allPosts[0])
-                    res.render("raver", {allPosts});
+                    res.render("raver", { allPosts });
                   }
                 } else {
                   isLoggedIn = false;
@@ -141,7 +135,7 @@ app.post("/login", (req, res) => {
             }
           );
         }
-      });  //the tag will go here
+      }); //the tag will go here
     }
   );
 });
@@ -180,16 +174,23 @@ app.post("/post-add-page", upload.single("eventposter"), (req, res) => {
     "://" +
     req.hostname +
     "/images/posters/" +
-    req.file.filename
+    req.file.filename;
   // console.log(req.file.filename);
   kon.query(
-    "INSERT INTO posters(eventposter, image_type) VALUES(?,?)",
-    [req.file.filename, fileType],
+    "INSERT INTO posters(eventposter, image_type, event_date, event_name) VALUES(?,?,?,?)",
+    [req.file.filename, fileType, req.body.event_date, req.body.event_name],
     (error) => {
       if (error) {
         res.render("error");
       } else {
-        res.render("raver");
+        kon.query("SELECT * FROM posters", (error, allPosts)=>{
+          if(error){
+            res.render("error")
+          }else{
+            res.render("raver", {allPosts})
+          }
+        })
+        // res.render("raver", { allPosts });
       }
     }
   );

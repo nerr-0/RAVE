@@ -5,51 +5,49 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/style.css" />
-    
+
     <title>Ravers</title>
   </head>
   <body>
-    <header>
-      
-    </header>
+    <header></header>
     <main>
-       <div class="left-side-panel">
-            <img src="./images/mainlogo.png" alt="logo">
-            <a href="/account"><img src="./logos/person-outline.svg" alt="account"></a>
-            <a href="/calendar"><img src="./logos/calendar-clear-outline.svg" alt="calendar"></a>
-            <a href="/info"><img src="./logos/info.svg" alt="info"></a>
-            <a href="/settings"><img src="./logos/settings-outline.svg" alt="settings"></a>
-        </div>
+      <div class="left-side-panel">
+        <img src="./images/mainlogo.png" alt="logo" />
+        <a href="/account"
+          ><img src="./logos/person-outline.svg" alt="account"
+        /></a>
+        <a href="/calendar"
+          ><img src="./logos/calendar-clear-outline.svg" alt="calendar"
+        /></a>
+        <a href="/info"><img src="./logos/info.svg" alt="info" /></a>
+        <a href="/settings"
+          ><img src="./logos/settings-outline.svg" alt="settings"
+        /></a>
+      </div>
       <div class="ravers-main">
-
         <div class="ravers-header">
           <a href="/">HOME</a>
           <a href="/about">ABOUT</a>
           <a href="/log-out">LOG OUT</a>
-          <span
-            ></span></span>  
-       </div>
+        </div>
 
         <div class="main-header">
           <h2>Recent Events</h2>
           <a href="/post-add-page">ADD EVENT</a>
-        </div> 
+        </div>
       </div>
     </main>
     <div class="all-cards">
-      
-      
       <%allPosts.forEach(post=>{%>
-          <div class="card">
-            <img src="../public/images/posters/<%=post.image%>" alt="anything">
-            <!-- <div class="lower">
-              <span><%post.event_date%></span>
-              <h3><%post.event_name%></h3>
-            </div>
-            <h4><%post.post_owner%></h4> -->
-          </div>
+      <div class="card">
+        <img src="./images/posters/<%=post.image%>" alt="anything" />
+        <div class="lower">
+          <span><%post.event_date%></span>
+          <h3><%post.event_name%></h3>
+        </div>
+        <h4><%post.post_owner%></h4>
+      </div>
       <%})%>
-      
     </div>
   </body>
 </html>
