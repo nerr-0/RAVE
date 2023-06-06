@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Add Event Page</title>
-</head>
-<body>
+  </head>
+  <body>
     <h2>This is the page where you add events from</h2>
-     <form
-            action="/post-add-page"
-            class="add-event-form hide"
-            method="post"
-            enctype="multipart/form-data"
-            >
-            <input type="file" name="event_poster" id="event_poster" />
-            <div>
-                <input type="datetime-local" name="event_date" id="event_date" />
-                <input type="text" name="event_name" id="event_name" />
-            </div>
-            <input type="submit" value="ADD" class="add-btn">
-            </form>
-</body>
+    <form
+      action="/post-add-page"
+      class="add-event-form hide"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      <input type="file" name="eventposter" id="eventposter" />
+      <!-- <div>
+        <input type="datetime-local" name="event_date" id="event_date" />
+        <input type="text" name="event_name" id="event_name" />
+      </div> -->
+      <input type="submit" value="ADD" class="add-btn" />
+    </form>
+  </body>
 </html>

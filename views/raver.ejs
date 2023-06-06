@@ -27,8 +27,7 @@
           <a href="/about">ABOUT</a>
           <a href="/log-out">LOG OUT</a>
           <span
-            ><img src="./images/profiles/<%=currentUser.image%>" alt="profile"
-          /></span>
+            ></span></span>  
        </div>
 
         <div class="main-header">
@@ -38,16 +37,19 @@
       </div>
     </main>
     <div class="all-cards">
+      
+      
       <%allPosts.forEach(post=>{%>
           <div class="card">
-            <img src="./images/posters/<%=allPosts.image%>" alt="<%allPosts.post_owner%>">
-            <div class="lower">
-              <span><%allPosts.event_date%></span>
-              <h3><%allPosts.event_name%></h3>
+            <img src="../public/images/posters/<%=post.image%>" alt="anything">
+            <!-- <div class="lower">
+              <span><%post.event_date%></span>
+              <h3><%post.event_name%></h3>
             </div>
-            <h4><%allPosts.post_owner%></h4>
+            <h4><%post.post_owner%></h4> -->
           </div>
-        <%})%>
+      <%})%>
+      
     </div>
   </body>
 </html>

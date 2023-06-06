@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, __dirname + "/public/images/profiles");
+    cb(null, __dirname + "/public/images/posters");
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
@@ -21,7 +21,7 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
-const uploaded = multer({ destination: "/public/images/posters/" });
+// const uploaded = multer({ destination: "./public/images/posters/" });
 
 //creating connection to database
 const con = mysql.createConnection({
@@ -34,7 +34,20 @@ con.connect((error) => {
   if (error) {
     console.error(error);
   } else {
-    console.log("CONNECTED");
+    console.log("CONNECTED TO RAVE DATABASE");
+  }
+});
+const kon = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "sern",
+});
+kon.connect((error) => {
+  if(error){
+    console.error(error);
+  }else{
+    console.log("CONNECTED TO SERN DATABASE")
   }
 });
 
@@ -44,15 +57,15 @@ app.get("/", (req, res) => {
 app.get("/register", (req, res) => {
   res.render("register");
 });
-app.post("/register", upload.single("image"), (req, res) => {
+app.post("/register",  (req, res) => {
   // console.log("route working");
-  let fileType = req.file.mimetype.slice(req.file.mimetype.indexOf("/") + 1);
-  const filePath =
-    req.protocol +
-    "://" +
-    req.hostname +
-    "/images/profiles/" +
-    req.file.filename;
+  // let fileType = req.file.mimetype.slice(req.file.mimetype.indexOf("/") + 1);
+  // const filePath =
+  //   req.protocol +
+  //   "://" +
+  //   req.hostname +
+  //   "/images/profiles/" +
+  //   req.file.filename;
   con.query(
     "SELECT email FROM ravers WHERE email = ?",
     [req.body.email],
@@ -63,14 +76,13 @@ app.post("/register", upload.single("image"), (req, res) => {
         if (req.body.password === req.body.confirm_password) {
           bcrypt.hash(req.body.password, 5, function (err, hash) {
             con.query(
-              "INSERT INTO ravers(name,phone,password,email,image,image_type) VALUES(?,?,?,?,?,?)",
+              "INSERT INTO ravers(name,phone,password,email) VALUES(?,?,?,?)",
               [
                 req.body.name,
                 req.body.phone,
                 hash,
                 req.body.email,
-                req.file.filename,
-                fileType,
+               
               ],
               (error) => {
                 if (error) {
@@ -96,7 +108,7 @@ app.post("/login", (req, res) => {
     "SELECT * FROM ravers WHERE email = ?",
     [req.body.email],
     (error, user) => {
-      con.query("SELECT * FROM posters", (error, allPosts) => {
+      kon.query("SELECT * FROM posters", (error, allPosts) => {
         console.log(user[0]);
         console.log("the above is the users")
         console.log(allPosts)
@@ -118,9 +130,8 @@ app.post("/login", (req, res) => {
                   if (error) {
                     res.render("error");
                   } else {
-                    // console.log("below is allPosts")
-                    // console.log(allPosts);
-                    res.render("raver", {currentUser :user[0], allPosts });
+                    // console.log(allPosts[0])
+                    res.render("raver", {allPosts});
                   }
                 } else {
                   isLoggedIn = false;
@@ -162,17 +173,18 @@ app.get("/settings", (req, res) => {
 app.get("/post-add-page", (req, res) => {
   res.render("post-add-page");
 });
-app.post("/post-add-page", uploaded.single("event_poster"), (req, res) => {
+app.post("/post-add-page", upload.single("eventposter"), (req, res) => {
   let fileType = req.file.mimetype.slice(req.file.mimetype.indexOf("/") + 1);
   const filePath =
     req.protocol +
     "://" +
     req.hostname +
-    " /public/images/posters/" +
-    req.file.filename;
-  con.query(
-    "INSERT INTO posters(event_poster, image_type, event_date, event_name) VALUES(?,?,?,?)",
-    [req.file.filename, fileType, req.body.event_date, req.body.event_name],
+    "/images/posters/" +
+    req.file.filename
+  // console.log(req.file.filename);
+  kon.query(
+    "INSERT INTO posters(eventposter, image_type) VALUES(?,?)",
+    [req.file.filename, fileType],
     (error) => {
       if (error) {
         res.render("error");
@@ -184,5 +196,5 @@ app.post("/post-add-page", uploaded.single("event_poster"), (req, res) => {
 });
 
 app.listen(3000, () => {
-  console.log("Listening on port");
+  console.log("LISTENING ON PORT 3000");
 });
