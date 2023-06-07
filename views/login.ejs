@@ -7,12 +7,15 @@
     <link rel="stylesheet" href="./css/style.css">
     <title>Login Page</title>
   </head>
-  <body>
-    <%if(locals.error){%>
-      <p style="color:orangered">
-        <%=locals.errorMessage%>
-      </p>
-      <%}%>
+  <body class="forms-body">
+    <div class="login-top">
+      <h2>LOGIN PAGE</h2>
+      <%if(locals.error){%>
+        <p style="color:orangered" class="error-message">
+          <%=error%>
+        </p>
+        <%}%>
+    </div>
     <form action="/login" method="post">
       <label for="email"> Email</label><br />
       <input type="email" name="email" id="email" required /><br /><br />
