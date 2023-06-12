@@ -26,14 +26,18 @@
       </div>
       <div class="ravers-main">
         <div class="ravers-header">
-          <a href="/">HOME</a>
-          <a href="/about">ABOUT</a>
-          <a href="/log-out">LOG OUT</a>
+          <h1>The Rave</h1>
+          <nav>
+            <a href="/">HOME</a>
+            <a href="/about">ABOUT</a>
+            <a href="/log-out">LOG OUT</a>
+          </nav>
+          
         </div>
-
+        <hr>
         <div class="main-header">
           <h2>Recent Events</h2>
-          <a href="/post-add-page">ADD EVENT</a>
+          <a href="/post-add-page" class="buttons">ADD EVENT</a>
         </div>
       </div>
     </main>
@@ -46,7 +50,13 @@
           <h3><%=post.event_name%></h3>
         </div>
         <h4><%=post.post_owner%></h4>
+        <hr>
+        <div class="buttons-part">
+        <button class="buy-delete">BOOK </button>
+        <button class="buy-delete">DELETE </button>
       </div>
+      </div>
+      
       <%})%>
     </div>
     <footer>
