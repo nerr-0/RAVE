@@ -84,6 +84,10 @@ hr {
   height: fit-content;
   border: 1px solid rgb(62, 60, 60);
   border-radius: 10px;
+  /*experimental code*/
+  box-shadow: 9px 7px 21px -4px rgba(0,0,0,0.54);
+  -webkit-box-shadow: 9px 7px 21px -4px rgba(0,0,0,0.54);
+  -moz-box-shadow: 9px 7px 21px -4px rgba(0,0,0,0.54);
 }
 .lower {
   padding: 8px;
@@ -255,6 +259,7 @@ form {
   background-color: #a5968a;
 }
 .buy-delete {
+  width: 70%;
   padding: 10px;
   border: 1px solid black;
   border-radius: 8px;

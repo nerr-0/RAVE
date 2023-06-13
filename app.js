@@ -105,7 +105,7 @@ app.post("/login", (req, res) => {
       if (error) {
         res.render("error");
       } else {
-        console.log(user);
+        // console.log(user);
         if(user.length > 0){
         //   console.log(user)
             kon.query("SELECT * FROM posters", (error, allPosts) => {
@@ -158,12 +158,14 @@ app.get("/account", (req, res) => {
 });
 app.post("/account", (req, res)=>{
   con.query("SELECT * FROM ravers WHERE email = ?", [req.body.email], (error, results)=>{
+    console.log(results[0])
     if(error){
-      req.status(500).render("error");
+      res.render("error");
     }else{
-      res.render("account", {results})
+      res.render("account", {currentUser: results[0]});
     }
   })
+  
 })
 app.get("/calendar", (req, res) => {
   res.render("calendar");
