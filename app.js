@@ -156,9 +156,21 @@ app.get("/raver", (req, res) => {
 app.get("/account", (req, res) => {
   res.render("account");
 });
+app.post("/account", (req, res)=>{
+  con.query("SELECT * FROM ravers WHERE email = ?", [req.body.email], (error, results)=>{
+    if(error){
+      req.status(500).render("error");
+    }else{
+      res.render("account", {results})
+    }
+  })
+})
 app.get("/calendar", (req, res) => {
   res.render("calendar");
 });
+app.get("/about", (req, res)=>{
+  res.render("info");
+})
 app.get("/info", (req, res) => {
   res.render("info");
 });
