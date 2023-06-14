@@ -3,10 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="./css/style.css"> -->
     <title>Account | The Rave</title>
 </head>
-<body>
-    <h2>Welcome, <%=currentUser.name%></h2>
-    <span><%=currentUser.email%></span>
+<body class="account">
+    <div class="account-page">
+        <h2>Welcome to your Account Page.</h2>
+        <img src="./images/mtued.png" alt="mtu">
+        <p>We apologize for the inconvenience.</p>
+        <p>We are working on resolving the issues with this site</p>
+    </div>
+    <footer>
+        <%-include('partials/footer')%>
+    </footer>
+    
 </body>
 </html>

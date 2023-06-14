@@ -3,19 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/style.css">
     <title>Calendar | The Rave</title>
 </head>
 <body>
-    <h2>BUY TICKETS</h2>
-    <div class="payment">
-        <form action="/calendar" method="get">
-            <label for="event_name">Event Name</label>
-            <input type="text" name="event_name" id="event_name"><br><br>
-            <label for="tickets">Number of tickets</label>
-            <input type="number" name="tickets" id="tickets"><br><br>
-            <input type="submit" value="BUY">
-        </form>
+    <div class="single-poster">
+        <h2>Purchase Ticket</h2>
+        <div class="card">
+            <img src="./images/posters/<%=eventTicket.eventposter%>" alt="event-poster">
+            <div class="lower">
+                <span><%=eventTicket.event_date%></span>
+                <h3><%=eventTicket.event_name%></h3>
+            </div>
+        </div>
+        <button class="buy-delete" onclick="window.location.href='/';" id="done">DONE</button>
     </div>
+    <footer>
+        <%-include('partials/footer')%>
+    </footer>
 </body>
 </html>

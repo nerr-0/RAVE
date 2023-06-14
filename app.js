@@ -106,39 +106,39 @@ app.post("/login", (req, res) => {
         res.render("error");
       } else {
         // console.log(user);
-        if(user.length > 0){
-        //   console.log(user)
-            kon.query("SELECT * FROM posters", (error, allPosts) => {
-              if (error) {
-                res.render("error");
-              } else {
-                bcrypt.compare(
-                  req.body.password,
-                  user[0].password,
-                  (error, match) => {
-                    if (error) {
-                      res.render("error");
-                    } else {
-                      if (match) {
-                        isLoggedIn = true;
+        if (user.length > 0) {
+          //   console.log(user)
+          kon.query("SELECT * FROM posters", (error, allPosts) => {
+            if (error) {
+              res.render("error");
+            } else {
+              bcrypt.compare(
+                req.body.password,
+                user[0].password,
+                (error, match) => {
+                  if (error) {
+                    res.render("error");
+                  } else {
+                    if (match) {
+                      isLoggedIn = true;
 
-                        if (error) {
-                          res.render("error");
-                        } else {
-                          // console.log(allPosts[0])
-                          res.render("raver", { allPosts });
-                        }
+                      if (error) {
+                        res.render("error");
                       } else {
-                        isLoggedIn = false;
-                        res.render("login", { error: "WRONG PASSWORD" });
+                        // console.log(allPosts[0])
+                        res.render("raver", { allPosts });
                       }
+                    } else {
+                      isLoggedIn = false;
+                      res.render("login", { error: "WRONG PASSWORD" });
                     }
                   }
-                );
-              }
-            }); //the tag will go here
-        }else{
-          res.render("login", {error: "USER DOES NOT EXIST" })
+                }
+              );
+            }
+          }); //the tag will go here
+        } else {
+          res.render("login", { error: "USER DOES NOT EXIST" });
         }
       }
     }
@@ -156,23 +156,41 @@ app.get("/raver", (req, res) => {
 app.get("/account", (req, res) => {
   res.render("account");
 });
-app.post("/account", (req, res)=>{
-  con.query("SELECT * FROM ravers WHERE email = ?", [req.body.email], (error, results)=>{
-    console.log(results[0])
-    if(error){
-      res.render("error");
-    }else{
-      res.render("account", {currentUser: results[0]});
+app.post("/account", (req, res) => {
+  con.query(
+    "SELECT * FROM ravers WHERE email = ?",
+    [req.body.email],
+    (error, results) => {
+      console.log(results[0]);
+      if (error) {
+        res.render("error");
+      } else {
+        res.render("account", { currentUser: results[0] });
+      }
     }
-  })
-  
-})
-app.get("/calendar", (req, res) => {
-  res.render("calendar");
+  );
 });
-app.get("/about", (req, res)=>{
+app.get("/ticket", (req, res) => {
+  res.render("ticket");
+});
+app.get("/calendar", (req, res) => {
+  kon.query(
+    "SELECT * FROM posters",
+    (error, results) => {
+      console.log(results);
+      // console.log(req.body.event_name)
+      if (error) {
+        res.render("error");
+      } else {
+        var eventTicket = results[Math.floor(Math.random() * results.length)];
+        res.render("calendar", { eventTicket});
+      }
+    }
+  );
+});
+app.get("/about", (req, res) => {
   res.render("info");
-})
+});
 app.get("/info", (req, res) => {
   res.render("info");
 });

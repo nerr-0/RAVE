@@ -11,7 +11,8 @@ main {
 }
 input {
   padding: 4px;
-  /* border-radius: 4px; */
+  border-radius: 4px;
+  
 }
 hr {
   border: 1px solid #adadad;
@@ -228,12 +229,14 @@ form {
   flex-direction: column;
   gap: 2px;
   margin-top: 80px;
+  /* background-image: url("./images/login.jpg"); */
 }
 .forms-body {
   display: flex;
   align-items: center;
   flex-direction: column;
   padding: 60px;
+  
 }
 .login-top {
   display: flex;
@@ -254,6 +257,21 @@ form {
   margin-top: 10px;
 }
 
+
+/*ticket page*/
+.single-poster{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 40px;
+  align-items: center;
+}
+#done{
+  width: 30%;
+  margin-top: 30px;
+}
+
 /*other items*/
 .buttons {
   background-color: #a5968a;
@@ -264,6 +282,25 @@ form {
   border: 1px solid black;
   border-radius: 8px;
   background-color: #a5968a;
+}
+.account{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
+}
+.account-page{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid grey;
+  width: 90%;
+
+}
+.account-page img{
+  width: 70%;
+  height: 90vh;
 }
 
 
@@ -304,6 +341,9 @@ form {
 }
 
 @media screen and (max-width: 700px) {
+  .main{
+    padding: 4px;
+  }
   .ravers-main {
     margin-left: 0px;
     width: 100%;
@@ -330,5 +370,16 @@ form {
   .main{
     gap: 4px;
     padding: 5px;
+  }
+  form{
+    width: 90%;
+    padding: 24px;
+    gap: 0px;
+    margin-top: 20px;
+  }
+  .login-top{
+    width: 90%;
+    gap: 2px;
+    margin-left: 10px;
   }
 }
