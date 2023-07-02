@@ -3,6 +3,7 @@ const app = express();
 const multer = require("multer");
 const mysql = require("mysql");
 const bcrypt = require("bcrypt");
+const PORT = process.env.PORT || 3000;
 
 let isLoggedIn;
 
@@ -233,6 +234,6 @@ app.post("/post-add-page", upload.single("eventposter"), (req, res) => {
   );
 });
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
   console.log("LISTENING ON PORT 3000");
 });
