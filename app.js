@@ -3,6 +3,7 @@ const app = express();
 const multer = require("multer");
 const mysql = require("mysql");
 const bcrypt = require("bcrypt");
+const bodyParser = require("body-parser")
 const PORT = process.env.PORT || 3000;
 
 let isLoggedIn;
