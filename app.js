@@ -26,10 +26,10 @@ const upload = multer({ storage: storage });
 
 //creating connection to database
 const con = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "rave",
+  host: "bqnzbt2ug5tolvslrz9v-mysql.services.clever-cloud.com",
+  user: "uhrqm9t1kx3mebqo",
+  password: "ggsWDh8ROB5XljbZtaqF",
+  database: "bqnzbt2ug5tolvslrz9v",
 });
 con.connect((error) => {
   if (error) {
