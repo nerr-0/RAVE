@@ -80,6 +80,7 @@ app.post("/register", (req, res) => {
               "INSERT INTO ravers(name,phone,password,email) VALUES(?,?,?,?)",
               [req.body.name, req.body.phone, hash, req.body.email],
               (error) => {
+                console.log(req.body)
                 if (error) {
                   res.render("error", {error});
                 } else {
