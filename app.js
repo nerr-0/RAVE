@@ -81,7 +81,7 @@ app.post("/register", (req, res) => {
               [req.body.name, req.body.phone, hash, req.body.email],
               (error) => {
                 if (error) {
-                  res.render("error");
+                  res.render("error", {error});
                 } else {
                   res.render("login");
                 }

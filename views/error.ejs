@@ -7,6 +7,11 @@
     <title>error page</title>
   </head>
   <body>
+    <%if(locals.error){%>
+        <p style="color:orangered" class="error-message">
+          <%=error%>
+        </p>
+        <%}%>
     <h1>this is the error page</h1>
   </body>
 </html>

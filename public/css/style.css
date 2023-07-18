@@ -364,7 +364,7 @@ form {
     padding: 20px;
   }
   .card {
-    width: fit-content;
+    width: max-content;
     height: auto;
   }
   .main{
