@@ -38,19 +38,19 @@ con.connect((error) => {
     console.log("CONNECTED TO RAVE DATABASE");
   }
 });
-const kon = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "sern",
-});
-kon.connect((error) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log("CONNECTED TO SERN DATABASE");
-  }
-});
+// const kon = mysql.createConnection({
+//   host: "localhost",
+//   user: "root",
+//   password: "",
+//   database: "sern",
+// });
+// kon.connect((error) => {
+//   if (error) {
+//     console.error(error);
+//   } else {
+//     console.log("CONNECTED TO SERN DATABASE");
+//   }
+// });
 
 app.get("/", (req, res) => {
   res.render("home");
@@ -68,7 +68,7 @@ app.post("/register", (req, res) => {
   //   "/images/profiles/" +
   //   req.file.filename;
   con.query(
-    "SELECT email FROM test1 WHERE email = ?",
+    "SELECT email FROM ravers WHERE email = ?",
     [req.body.email],
     (error, results) => {
       if (results.length > 0) {
@@ -77,7 +77,7 @@ app.post("/register", (req, res) => {
         if (req.body.password === req.body.confirm_password) {
           bcrypt.hash(req.body.password, 5, function (err, hash) {
             con.query(
-              "INSERT INTO test1(name,phone,password,email) VALUES(?,?,?,?)",
+              "INSERT INTO ravers(name,phone,password,email) VALUES(?,?,?,?)",
               [req.body.name, req.body.phone, hash, req.body.email],
               (error) => {
                 if (error) {
