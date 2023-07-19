@@ -70,7 +70,7 @@ app.post("/register", (req, res) => {
   //   "/images/profiles/" +
   //   req.file.filename;
   con.query(
-    "SELECT email FROM ravers WHERE email = ?",
+    "SELECT email FROM ravers2 WHERE email = ?",
     [req.body.email],
     (error, results) => {
       if (results.length > 0) {
@@ -79,7 +79,7 @@ app.post("/register", (req, res) => {
         if (req.body.password === req.body.confirm_password) {
           bcrypt.hash(req.body.password, 5, function (err, hash) {
             con.query(
-              "INSERT INTO ravers(name,phone,password,email) VALUES(?,?,?,?)",
+              "INSERT INTO ravers2(name,phone,password,email) VALUES(?,?,?,?)",
               [req.body.name, req.body.phone, hash, req.body.email],
               (error) => {
                 console.log(req.body)
@@ -103,7 +103,7 @@ app.get("/login", (req, res) => {
 });
 app.post("/login", (req, res) => {
   con.query(
-    "SELECT * FROM test1 WHERE email = ?",
+    "SELECT * FROM ravers2 WHERE email = ?",
     [req.body.email],
     (error, user) => {
       if (error) {
