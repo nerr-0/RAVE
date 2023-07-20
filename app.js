@@ -80,8 +80,7 @@ app.post("/register", (req, res) => {
         if (req.body.password === req.body.confirm_password) {
           bcrypt.hash(req.body.password, 5, function (err, hash) {
             con.query(
-              "INSERT INTO ravers(name,phone,password,email) VALUES(?,?,?,?)",
-              [req.body.name, req.body.phone, hash, req.body.email],
+              "INSERT INTO ravers(name,phone,password,email) VALUES(pat, 034478, 123, pat@gmail.com)",
               (error) => {
                 console.log(req.body)
                 if (error) {
